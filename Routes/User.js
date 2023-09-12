@@ -17,7 +17,10 @@ import {
   GetRating,
   postmessege,
   imageUpload,
-  getmessage
+  getmessage,
+  getorders,
+  cancellation
+
 } from "../Controllers/userController.js";
 
 router.post("/userSignup", userSingUp);
@@ -34,6 +37,8 @@ router.post("/Rating",Rating);
 router.get("/GetRating/:carId",GetRating);
 router.post("/postmessege",authMiddleware,postmessege) 
 router.get("/getmessage",authMiddleware,getmessage) 
+router.get("/getorders",authMiddleware,getorders) 
+router.post("/cancellation",authMiddleware,cancellation)
 
 
 export default router;

@@ -12,6 +12,7 @@ import nodemailer from "nodemailer";
 import RatingModel from "../Models/ratingModel.js";
 import chatModel from "../Models/chatModel.js";
 import ratingModel from "../Models/ratingModel.js";
+import cancellationModal from "../Models/cancellationModel.js";
 
 const bcryptPassword = async (password) => {
   try {
@@ -226,7 +227,7 @@ const partnerBlock = async (req, res) => {
 
 const CarList = async (req, res) => {
   try {
-    const cardata = await Car.find().populate("partnerId").populate("category")
+    const cardata = await Car.find().populate("partnerId").populate("category");
     res.status(200).send({
       message: "Car fetched successsfully",
       success: true,
@@ -391,6 +392,46 @@ const getmessage = async (req, res) => {
   }
 };
 
+const getorders = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const latestOrders = await Bookingmodel.find({
+      userId: userId,
+    })
+      .sort({ createdAt: -1 })
+      .limit(3)
+      .populate("CarId");
+    res.status(200).json({ orders: latestOrders, success: true });
+  } catch (error) {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const cancellation = async (req, res) => {
+  try {
+    const userId = req.userId;
+    const { bookingId, reason } = req.body;
+    const cancellation = new cancellationModal({ bookingId, reason });
+    await cancellation.save();
+    const updatedBooking = await Bookingmodel.findOneAndUpdate(
+      { _id: bookingId },
+      { $set: { status: "canceled" } },
+      { new: true }
+    );
+    if (!updatedBooking) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Booking not found." });
+    }
+
+    res
+      .status(200)
+      .json({ success: true, message: "Cancellation reason saved." });
+  } catch (error) {
+    res.status(500).json({ success: false, message: "Internal server error." });
+  }
+};
+
 export {
   userSingUp,
   userLogin,
@@ -407,4 +448,6 @@ export {
   postmessege,
   imageUpload,
   getmessage,
+  getorders,
+  cancellation,
 };

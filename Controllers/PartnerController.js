@@ -219,14 +219,15 @@ const EditCar = async (req, res) => {
     const carId = req.params.carId;
     const updatedCarData = req.body;
     const newCategoryId = req.body.categoryId;
-    let image = null;
-    if (req.file) {
-      const result = await cloudinary.uploader.upload(req.file.path);
-      image = result.secure_url;
+    const images = req.files;
+    const imageUrls = [];
+    for (const image of images) {
+      const result = await cloudinary.uploader.upload(image.path);
+      imageUrls.push(result.secure_url);
     }
     const updatedCar = await Car.findByIdAndUpdate(
       carId,
-      { ...updatedCarData, category: newCategoryId, Images: image },
+      { ...updatedCarData, category: newCategoryId, Images: imageUrls },
       { upsert: true }
     );
     res.status(200).send({

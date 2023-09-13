@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 // Connect to MongoDB
-mongoose.connect("mongodb://127.0.0.1:27017/CarRentalServices", {
+mongoose.connect("mongodb+srv://shakil:shakil1212@cluster0.2pkhiac.mongodb.net/CarRentalServices", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -9,7 +9,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/CarRentalServices", {
 const connection = mongoose.connection;
 
 connection.on("connected", () => {
-  console.log("mongoose connected");
+  console.log("mongoose connected");  
 });
 
 connection.on("error", (error) => {

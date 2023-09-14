@@ -207,7 +207,7 @@ const postmessege = async (req, res) => {
     const { text, selectedUser, sender } = req.body;
     const newMessage = new chatModel({
       senter: sender,
-      userId: selectedUser._id,
+      userId: selectedUser,
       text: text,
     });
     await newMessage.save();

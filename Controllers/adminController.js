@@ -240,9 +240,9 @@ const getTotalcount = async (req, res) => {
     const tenDaysAgo = new Date(today);
     tenDaysAgo.setDate(today.getDate() - 10);
 
-    const BookingCount  = await bookingModel.find().count();
-    const Users = await User.find().count()
-    const Partners = await Partner.find().count()
+    const BookingCount = await bookingModel.find().count();
+    const Users = await User.find().count();
+    const Partners = await Partner.find().count();
     const lastTenDaysData = [];
     for (let i = 0; i < 10; i++) {
       const dayStart = new Date(tenDaysAgo);
@@ -324,8 +324,8 @@ const getTotalcount = async (req, res) => {
       monthly: monthlyTotalAmount,
       monthlyC: monthlyDeliveredByCategory,
       count: BookingCount,
-      user:Users,
-      partner:Partners,
+      user: Users,
+      partner: Partners,
       success: true,
     });
   } catch (error) {

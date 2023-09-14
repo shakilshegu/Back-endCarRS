@@ -51,6 +51,34 @@ const mail = (email, otp) => {
   });
 };
 
+const paymentSucess = (email) => {
+  const transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: "carrentalservices3@gmail.com",
+      pass: "zehmcugpjzydvuwq",
+    },
+  });
+
+  const mailOptions = {
+    from: "carrentalservices3@gmail.com",
+    to: email,
+    subject: "Booking acknowlegement",
+    text: `your booking has been created`,
+  };
+
+  transporter.sendMail(mailOptions, function (error, info) {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Email sent: " + info.response);
+      return info.response;
+    }
+  });
+};
+
 let otp;
 let userData;
 const userSingUp = async (req, res) => {
@@ -118,6 +146,35 @@ const userOtp = async (req, res) => {
     }
   } catch (error) {
     res.status(500).json();
+  }
+};
+
+const googleAuthencate = async (req, res) => {
+  try {
+    const { name, email } = req.body;
+    const userData = await User.findOne({ email: email });
+    if (!userData) {
+      const createUser = new User({
+        name,
+        email,
+      });
+      await createUser.save();
+      const token = jwt.sign({ id: userData._id }, process.env.JWT_Secret, {
+        expiresIn: "1d",
+      });
+      return res
+        .status(200)
+        .send({ message: "User created successfully", success: true, token });
+    } else {
+      const token = jwt.sign({ id: userData._id }, process.env.JWT_Secret, {
+        expiresIn: "1d",
+      });
+      return res
+        .status(201)
+        .send({ message: "Login successfully", success: true, token });
+    }
+  } catch (error) {
+    res.status(500).send({ message: "Internal Server Error", success: false });
   }
 };
 
@@ -450,4 +507,5 @@ export {
   getmessage,
   getorders,
   cancellation,
+  googleAuthencate,
 };

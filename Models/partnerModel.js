@@ -7,7 +7,7 @@ const PartnerScheme = new Schema({
     password:{type:String, required: true},
     proof:{type:String},
     location:{type:Array},
-    isBlocked:{type: Boolean,default:false },
+    isBlocked:{type: Boolean,default:true },
     image: { type: String },
     isApproved: { type: String},
 

@@ -19,7 +19,8 @@ import {
   imageUpload,
   getmessage,
   getorders,
-  cancellation
+  cancellation,
+  googleAuthencate
 
 } from "../Controllers/userController.js";
 
@@ -39,6 +40,7 @@ router.post("/postmessege",authMiddleware,postmessege)
 router.get("/getmessage",authMiddleware,getmessage) 
 router.get("/getorders",authMiddleware,getorders) 
 router.post("/cancellation",authMiddleware,cancellation)
+router.post("/googleAuthencate",googleAuthencate)
 
 
 export default router;

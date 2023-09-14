@@ -11,7 +11,7 @@ const userSchema = Schema({
   },
   password: {
     type: String,
-    required: true,
+    
   },
   isBlocked: {
     type: Boolean,

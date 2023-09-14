@@ -20,27 +20,30 @@ import {
   getmessage,
   getorders,
   cancellation,
-  googleAuthencate
-
+  googleAuthencate,
 } from "../Controllers/userController.js";
 
 router.post("/userSignup", userSingUp);
 router.post("/userLogin", userLogin);
-router.post("/imageUpload",authMiddleware,upload.single('license'),imageUpload)
+router.post(
+  "/imageUpload",
+  authMiddleware,
+  upload.single("license"),
+  imageUpload
+);
 router.post("/getuserinfobyid", authMiddleware, getuserinfobyid);
-router.post("/userOtp",userOtp)
+router.post("/userOtp", userOtp);
 router.get("/CarList", CarList);
 router.post("/Booking", authMiddleware, Booking);
 router.get("/CheckAvailability/:carId", CheckAvailability);
-router.post("/edituserprofile",authMiddleware,edituserprofile)
-router.post("/GetBookingDeatails",authMiddleware,GetBookingDeatails);
-router.post("/Rating",Rating);
-router.get("/GetRating/:carId",GetRating);
-router.post("/postmessege",authMiddleware,postmessege) 
-router.get("/getmessage",authMiddleware,getmessage) 
-router.get("/getorders",authMiddleware,getorders) 
-router.post("/cancellation",authMiddleware,cancellation)
-router.post("/googleAuthencate",googleAuthencate)
-
+router.post("/edituserprofile", authMiddleware, edituserprofile);
+router.post("/GetBookingDeatails", authMiddleware, GetBookingDeatails);
+router.post("/Rating", Rating);
+router.get("/GetRating/:carId", GetRating);
+router.post("/postmessege", authMiddleware, postmessege);
+router.get("/getmessage", authMiddleware, getmessage);
+router.get("/getorders", authMiddleware, getorders);
+router.post("/cancellation", authMiddleware, cancellation);
+router.post("/googleAuthencate", googleAuthencate);
 
 export default router;

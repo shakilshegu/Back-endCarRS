@@ -1,5 +1,4 @@
 import express, { json } from "express";
-import dotenv from "dotenv";
 import { Server } from "socket.io";
 import dbConnection from "./Config/dbConfig.js";
 import cors from "cors";
@@ -9,7 +8,10 @@ import adminRouter from "./Routes/Admin.js";
 import partnerRouter from "./Routes/Partner.js";
 import { Socket } from "socket.io";
 import http from "http";
+import dotenv from 'dotenv';
 dotenv.config();
+
+
 const app = express();
 app.use(json());
 

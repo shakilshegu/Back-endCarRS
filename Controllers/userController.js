@@ -381,7 +381,7 @@ const getmessage = async (req, res) => {
     const userId = req.userId;
     const data = await chatModel
       .find({
-        userId,
+        userId
       })
       .sort({ createdAt: -1 });
     res

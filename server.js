@@ -10,7 +10,8 @@ import { Socket } from "socket.io";
 import http from "http";
 import dotenv from 'dotenv';
 dotenv.config();
- 
+
+
 const app = express();
 app.use(json());
 
@@ -18,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin:process.env.Client_Side_URL,
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     credentials: true,
   })
@@ -31,7 +32,7 @@ app.use("/partner", partnerRouter);
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin:process.env.Client_Side_URL,
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });

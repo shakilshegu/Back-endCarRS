@@ -9,6 +9,9 @@
   },
   "author": "SHAKIL",
   "license": "ISC",
+  "engines": {
+    "node": ">=14.0.0 <15.0.0"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "cloudinary": "^1.40.0",

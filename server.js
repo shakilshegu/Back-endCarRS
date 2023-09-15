@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://carreantalserviess.netlify.app",
+    origin: "https://carrenatlserviesss.netlify.app",
     // origin: "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     credentials: true,
@@ -33,7 +33,7 @@ app.use("/partner", partnerRouter);
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://carreantalserviess.netlify.app",
+    origin: "https://carrenatlserviesss.netlify.app",
     // origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },

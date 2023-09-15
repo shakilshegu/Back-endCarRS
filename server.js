@@ -19,7 +19,8 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://carrentalsservices.netlify.app",
+    // origin: "https://carrentalsservices.netlify.app",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     credentials: true,
   })

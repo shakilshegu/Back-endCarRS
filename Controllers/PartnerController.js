@@ -247,6 +247,7 @@ const GetOrder = async (req, res) => {
   try {
     const partnerid = req.partnerid;
     const orderData = await BookingModel.find({ partnerId: partnerid })
+      .sort({ createdAt: -1 })
       .populate("category")
       .populate("CarId");
     res.status(200).send({

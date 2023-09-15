@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "carrentalsservices.netlify.app",
+    origin:process.env.Client_Side_URL,
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     credentials: true,
   })
@@ -32,7 +32,7 @@ app.use("/partner", partnerRouter);
 const httpServer = http.createServer(app);
 const io = new Server(httpServer, {
   cors: {
-    origin: "carrentalsservices.netlify.app",
+    origin:process.env.Client_Side_URL,
     methods: ["GET", "POST"],
   },
 });

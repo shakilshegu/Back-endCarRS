@@ -31,7 +31,7 @@ router.post(
 );
 router.post("/viewCar", isPartnerMiddleware, viewCar);
 router.delete("/deleteCar/:id", deleteCar);
-router.put("/EditCar/:carId", upload.single("image"), EditCar);
+router.put("/EditCar/:carId", upload.array("image",3), EditCar);
 router.post("/GetOrder", isPartnerMiddleware, GetOrder);
 router.put("/UpdateOrderStatus/:id", changestatus);
 router.post("/editpartnerprofile",isPartnerMiddleware,editpartnerprofile);

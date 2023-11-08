@@ -19,7 +19,7 @@ const port = process.env.PORT || 5000;
 
 app.use(
   cors({
-    origin: "https://carrenatlserviesss.netlify.app",
+    origin:  "http://localhost:3000",
     methods: ["GET", "POST", "DELETE", "PUT", "PATCH"],
     credentials: true,
   })
@@ -33,8 +33,8 @@ const httpServer = http.createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://carrenatlserviesss.netlify.app",
-    // origin: "http://localhost:3000",
+    // origin: "https://carrenatlserviesss.netlify.app",
+    origin: "http://localhost:3000",
     methods: ["GET", "POST"],
   },
 });

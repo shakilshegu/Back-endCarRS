@@ -90,8 +90,8 @@ const userSingUp = async (req, res) => {
         .send({ message: "User already exist", success: false });
     } else {
       otp = otpGen();
-      userData = req.body;
       console.log(otp);
+      userData = req.body;
       mail(req.body.email, otp);
       res.status(200).json({ success: true });
     }

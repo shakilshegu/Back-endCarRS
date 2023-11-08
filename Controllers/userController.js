@@ -51,34 +51,6 @@ const mail = (email, otp) => {
   });
 };
 
-const paymentSucess = (email) => {
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: "carrentalservices3@gmail.com",
-      pass: "zehmcugpjzydvuwq",
-    },
-  });
-
-  const mailOptions = {
-    from: "carrentalservices3@gmail.com",
-    to: email,
-    subject: "Booking acknowlegement",
-    text: `your booking has been created`,
-  };
-
-  transporter.sendMail(mailOptions, function (error, info) {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Email sent: " + info.response);
-      return info.response;
-    }
-  });
-};
-
 let otp;
 let userData;
 const userSingUp = async (req, res) => {

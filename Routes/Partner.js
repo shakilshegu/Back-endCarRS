@@ -26,12 +26,12 @@ router.post("/getpartnerinfobyid", isPartnerMiddleware, getpartnerinfobyid);
 router.post(
   "/addCarpost",
   isPartnerMiddleware,
-  upload.array("image",3),
+  upload.array("image",4),
   addCarpost
 );
 router.post("/viewCar", isPartnerMiddleware, viewCar);
 router.delete("/deleteCar/:id", deleteCar);
-router.put("/EditCar/:carId", upload.array("image",3), EditCar);
+router.put("/EditCar/:carId", upload.array("image",4), EditCar);
 router.post("/GetOrder", isPartnerMiddleware, GetOrder);
 router.put("/UpdateOrderStatus/:id", changestatus);
 router.post("/editpartnerprofile",isPartnerMiddleware,editpartnerprofile);

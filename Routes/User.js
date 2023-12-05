@@ -21,6 +21,7 @@ import {
   getorders,
   cancellation,
   googleAuthencate,
+  CarDetails
 } from "../Controllers/userController.js";
 
 router.post("/userSignup", userSingUp);
@@ -45,5 +46,6 @@ router.get("/getmessage", authMiddleware, getmessage);
 router.get("/getorders", authMiddleware, getorders);
 router.post("/cancellation", authMiddleware, cancellation);
 router.post("/googleAuthencate", googleAuthencate);
+router.get("/CarDetails",CarDetails)
 
 export default router;

@@ -269,6 +269,21 @@ const CarList = async (req, res) => {
   }
 };
 
+const CarDetails = async(req,res) =>{
+  try {
+    const data = await Car.find()
+    res.status(200).send({
+      message:"Car Fetched Successfully",
+      success:true,
+      data
+    })
+  } catch (error) {
+    res
+    .status(500)
+    .send({message:"Erroe getting the car info",success:false,error})
+  }
+}
+
 const Booking = async (req, res) => {
   try {
     const userId = req.userId;
@@ -480,4 +495,5 @@ export {
   getorders,
   cancellation,
   googleAuthencate,
+  CarDetails
 };
